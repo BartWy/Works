@@ -1,0 +1,47 @@
+body{
+    background:  #AA556E;
+    background-size: cover;
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.game {
+    background-color: transparent;
+    width: 602px;
+    height: 602px;
+    margin: 100px auto;
+}
+
+.game-field {
+    width: 140px;
+    height: 140px;
+    display: block;
+   float: left;
+    color: #999999;
+    font-size: 6.3em;
+    padding: 1px 27px;
+}
+
+
+#first, #second, #third {
+    border-bottom: 3px solid #355749;
+}
+
+#second {
+    border-left: 3px solid #355749;
+    border-right: 3px solid #355749;
+
+}
+
+#fourth, #fifth, #sixth {
+    border-bottom: 3px solid #355749;
+}
+
+#fifth {
+    border-left: 3px solid #355749;
+    border-right: 3px solid #355749;
+}
+#eight {
+    border-left: 3px solid #355749;
+    border-right: 3px solid #355749;
+}
