@@ -1,59 +1,97 @@
 "use strict";
-console.log('srp')
+
 
 
 var playBoard;
 const humPlay = 'O';
 const aI ='X';
-const vinComb= [
-    [0,1,2],
-    [3,4,5],
-    [6,7,8],
-    [0,4,8],
-    [0,3,6],
-    [1,4,7],
-    [2,5,8],
-    [2,4,6]
-];
 
     const gamefield = document.querySelectorAll('.game-field');
     startGame();
 
 
+
+
     function startGame() {
-        document.querySelector('.endgame').style.display='none';
-        playBoard= Array.from(Array(9).keys());
+        playBoard= [];
 
-    for(var i = 0; i<gamefield.length; i++){
-    gamefield[i].innerText ='';
-    gamefield[i].style.removeProperty('background-color');
-    gamefield[i].addEventListener('click', turnClick, false);//tworze nasłuchiwacza zdarzeń Tworzy sie MouseEvent, wykorzystam do wyciągnięcia z niego id pola
-
+    for(var i = 0; i<gamefield.length; i++) {
+        gamefield[i].addEventListener('click', turnClick, false);//tworze nasłuchiwacza zdarzeń Tworzy sie MouseEvent, wykorzystam do wyciągnięcia z niego id pola
     }
+
+
+
 }
 function turnClick(field) {
-    turn(field.target.id, humPlay)
+    playBoard.push(field.target.id);
+    document.getElementById(field.target.id).innerText = humPlay;
+    document.getElementById(playBoard[playBoard.length-1]).removeEventListener('click', turnClick, false)
 
-    console.log(field)
+    comp()
+
 }
-function turn(squareId, player) {
-    playBoard[squareId] = player;
-    document.getElementById(squareId).innerText = player;
-    let winGame = winCheck(playBoard,player)
-    if(winGame) gameOver(winGame)
-}
-function winCheck(board, player) {
-    let plays = board.reduce((a, e, i) => (e === player) ? a.concat(i) : a, [])
-    console.log(board)
-    let winGame = null;
-    for (let [index, win] of vinComb.entries()) {
-        if (win.every(elem => plays.indexOf(elem) > -1))
-        {
-            winGame = {index: index, player: player};
-            break;
+function comp() {
+        var choseField =[]
+        for(var i =0; i<playBoard.length; i++){
+
+             choseField.push(playBoard[i])
         }
 
+    switch (true) {
+
+        case choseField[choseField.length - 1] == 'first':
+            document.getElementById('fifth').innerText = aI;
+            document.getElementById('fifth').removeEventListener('click', turnClick, false)
+            break
+
+        case choseField[choseField.length - 1] == 'second':
+            document.getElementById('third').innerText = aI;
+            document.getElementById('third').removeEventListener('click', turnClick, false);
+            break
+
+        case choseField[choseField.length - 1] == 'third':
+            document.getElementById('second').innerText = aI;
+            document.getElementById('second').removeEventListener('click', turnClick, false);
+            break
+
+        case choseField[choseField.length - 1] == 'fourth':
+            document.getElementById('fifth').innerText = aI;
+            document.getElementById('fifth').removeEventListener('click', turnClick, false);
+            break
+
+        case choseField[choseField.length - 1] == 'fifth':
+            document.getElementById('sixth').innerText = aI;
+            document.getElementById('sixth').removeEventListener('click', turnClick, false);
+            break
+
+        case choseField[choseField.length - 1] == 'sixth':
+            document.getElementById('fourth').innerText = aI;
+            document.getElementById('fourth').removeEventListener('click', turnClick, false);
+            break
+        case choseField[choseField.length - 1] == 'seventh':
+            document.getElementById('nineth').innerText = aI;
+            document.getElementById('nineth').removeEventListener('click', turnClick, false);
+            break
+        case choseField[choseField.length - 1] == 'eight':
+            document.getElementById('seventh').innerText = aI;
+            document.getElementById('seventh').removeEventListener('click', turnClick, false);
+            break
+        case choseField[choseField.length - 1] == 'nineth':
+            document.getElementById('eight').innerText = aI;
+            document.getElementById('eight').removeEventListener('click', turnClick, false);
+            break
+
+
+
+
+
+
+
+
     }
-    return winGame;
+
+
+
 
 }
+
